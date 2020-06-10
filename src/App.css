@@ -16,6 +16,10 @@
   background-position: center;
 }
 
+.is-fall {
+  background-color: #e6750b;
+}
+
 .has-background-tan {
   background-color: #A1916B;
 }
