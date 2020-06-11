@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 const NavLink = (props) => {
@@ -10,33 +10,71 @@ const NavLink = (props) => {
 };
 
 const Nav = () => {
+  const [showMobileNav, toggleShowMobileNav] = useState(false);
+
   return (
     <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <a className="navbar-item is-hidden-tablet" href="#top">Damien Lucchese</a>
-        <a className="navbar-item is-hidden-mobile" href="#top"><code>
-          &lt;dev id="
-          <span className="is-size-5 has-text-black">damien</span>
-          " class="<span className="is-size-5 has-text-black">lucchese</span>
-          "&gt;<span className="is-size-3 has-text-black has-text-weight-semibold">Me</span>&lt;/dev&gt;
-        </code></a>
+        <a className="navbar-item" href="#top">
+          <span className="is-hidden-tablet">Damien Lucchese</span>
 
-        <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <code className="is-hidden-mobile">
+            &lt;dev id="
+            <span className="is-size-5 has-text-black">damien</span>
+            " class="<span className="is-size-5 has-text-black">lucchese</span>
+            "&gt;<span className="is-size-3 has-text-black has-text-weight-semibold">Me</span>&lt;/dev&gt;
+          </code>
+        </a>
+
+        <a
+          role="button"
+          className={`navbar-burger burger ${showMobileNav ? "is-active" : ""}`}
+          aria-label="menu"
+          aria-expanded="false"
+          onClick={() => toggleShowMobileNav(!showMobileNav)}
+        >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
       </div>
 
-      <div id="navbarBasicExample" className="navbar-menu">
+      <div className={`navbar-menu ${showMobileNav ? "is-active" : ""}`}>
         <div className="navbar-end">
-          <NavLink link="dad" />
-          <NavLink link="husband" />
-          <NavLink link="cat" />
-          <NavLink link="cooking" />
-          <NavLink link="archery" />
-          <NavLink link="comics" />
-          <NavLink link="games" />
+
+          <div className="navbar-item has-dropdown is-hoverable">
+            <a className="navbar-link">Family</a>
+            <div className="navbar-dropdown">
+              <NavLink link="dad" />
+              <hr className="navbar-divider" />
+              <NavLink link="husband" />
+              <hr className="navbar-divider" />
+              <NavLink link="cat" />
+            </div>
+          </div>
+
+          <div className="navbar-item has-dropdown is-hoverable">
+            <a className="navbar-link">Work</a>
+            <div className="navbar-dropdown">
+              <NavLink link="development" />
+              <hr className="navbar-divider" />
+              <NavLink link="design" />
+              <hr className="navbar-divider" />
+              <NavLink link="comics" />
+            </div>
+          </div>
+
+          <div className="navbar-item has-dropdown is-hoverable">
+            <a className="navbar-link">Leisure</a>
+            <div className="navbar-dropdown">
+              <NavLink link="cooking" />
+              <hr className="navbar-divider" />
+              <NavLink link="archery" />
+              <hr className="navbar-divider" />
+              <NavLink link="games" />
+            </div>
+          </div>
+
           <NavLink link="hire" />
         </div>
       </div>
@@ -49,7 +87,7 @@ const Hero = (props) => {
     <section id={props.id} className={`hero ${props.sectionColor} is-fullheight`}>
       <div className="hero-body">
         <div className="container">
-          <div class="columns">
+          <div className="columns">
             <div className={`column ${props.columnType}`}>
               <p className="title">{props.title}</p>
               <p className="subtitle">{props.subtitle}</p>
@@ -100,6 +138,30 @@ function App() {
       />
 
       <Hero
+        id="development"
+        sectionColor= "is-info"
+        columnType="is-5 is-offset-7 box has-background-link has-shadow-t-r"
+        title="Web Development"
+        subtitle="For the passed seven years I have been a professional Front End Web Developer."
+      />
+
+      <Hero
+        id="design"
+        sectionColor= "is-light"
+        columnType="is-three-fifths is-offset-one-fifth box has-background-warning has-shadow-b-r"
+        title="Graphic Design"
+        subtitle="I kind of fell into it, as a profession but later discovered it was something I always enjoyed without really recognizing it. As a kid, I always really enjoyed art projects, making cards for my parents on holidays, writing in different styles, etc. Most of my interests have a very heavy visual component, I really appreciate art and beauty that can be found all around us. Being able to arrange different visual elements in a way that is aesthetically pleasing is fun and powerful."
+      />
+
+      <Hero
+        id="comics"
+        sectionColor= "is-dark"
+        columnType="is-5 box has-background-tan has-shadow-t-l"
+        title="Sequential Art"
+        subtitle="When I was a kid, I thought comics floated down from Heaven. I was in love from the start. I couldn't read them, yet, but Masters of the Universe figures came with mini-comics and they were special. I got a little older and my uncle gave me an X-Factor comic, which I carried around till my collection grew. Later, I realized it was the medium, itself, that ensnared me. I got older and I wanted to be a part of the process that brought these special gems to life."
+      />
+
+      <Hero
         id="cooking"
         sectionColor= "is-danger"
         columnType="is-three-fifths is-offset-one-fifth box has-background-danger has-shadow-t-r"
@@ -113,14 +175,6 @@ function App() {
         columnType="is-5 box is-offset-7 has-background-warning-light has-shadow-b-r"
         title="Let 'Em Fly"
         subtitle="Instinctive traditional archery is one of my favorite hobbies. Only at targets, I shoot a PSE Nighthawk. It's a #35 take-down recurve. As for my arrows, I use Easton Axis 400 with weighted target tips & feather fletchings. For me, it's about the relationship with the bow, it's about relaxing and letting those arrows fly. It's a challenge but it calms me. Landing tight clusters of bullseyes, time after time, is not my concern. Testing what I can do without sights, stabalizers, & tension assist, is why I got into traditional archery."
-      />
-
-      <Hero
-        id="comics"
-        sectionColor= "is-dark"
-        columnType="is-three-fifths is-offset-one-fifth box has-background-tan has-shadow-b-l"
-        title="Sequential Art"
-        subtitle="When I was a kid, I thought comics floated down from Heaven. I was in love from the start. I couldn't read them, yet, but Masters of the Universe figures came with mini-comics and they were special. I got a little older and my uncle gave me an X-Factor comic, which I carried around till my collection grew. Later, I realized it was the medium, itself, that ensnared me. I got older and I wanted to be a part of the process that brought these special gems to life."
       />
 
       <Hero
