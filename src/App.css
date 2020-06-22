@@ -20,8 +20,24 @@
   background-color: #e6750b;
 }
 
+.has-text-fall {
+  color: #e6750b;
+}
+
 .has-background-tan {
   background-color: #A1916B;
+}
+
+#navbar-link-family::after {
+  border-color: hsl(171, 100%, 41%);
+}
+
+#navbar-link-work::after {
+  border-color: hsl(204, 86%, 53%);
+}
+
+#navbar-link-leisure::after {
+  border-color: hsl(348, 100%, 61%);
 }
 
 .has-shadow-b-l {
