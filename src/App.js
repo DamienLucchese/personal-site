@@ -3,9 +3,13 @@ import './App.css';
 
 const NavLink = (props) => {
   return (
-    <a className="navbar-item" href={`#${props.link}`}>
-      {props.link}
-    </a>
+    <React.Fragment>
+      <a className={`navbar-item ${props.color}`} href={`#${props.link}`}>
+        {props.link}
+      </a>
+
+      {props.hr && <hr className="navbar-divider" />}
+    </React.Fragment>
   );
 };
 
@@ -43,39 +47,37 @@ const Nav = () => {
         <div className="navbar-end">
 
           <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">Family</a>
+            <a id="navbar-link-family" className="navbar-link has-text-primary">family</a>
             <div className="navbar-dropdown">
-              <NavLink link="dad" />
-              <hr className="navbar-divider" />
-              <NavLink link="husband" />
-              <hr className="navbar-divider" />
+              <NavLink link="dad" hr={true} />
+              <NavLink link="husband" hr={true} />
               <NavLink link="cat" />
             </div>
           </div>
 
           <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">Work</a>
+            <a id="navbar-link-work" className="navbar-link has-text-info">work</a>
             <div className="navbar-dropdown">
-              <NavLink link="development" />
-              <hr className="navbar-divider" />
-              <NavLink link="design" />
-              <hr className="navbar-divider" />
+              <NavLink link="development" hr={true} />
+              <NavLink link="design" hr={true} />
               <NavLink link="comics" />
             </div>
           </div>
 
           <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">Leisure</a>
+            <a id="navbar-link-leisure" className="navbar-link has-text-danger">leisure</a>
             <div className="navbar-dropdown">
-              <NavLink link="cooking" />
-              <hr className="navbar-divider" />
-              <NavLink link="archery" />
-              <hr className="navbar-divider" />
+              <NavLink link="cooking" hr={true} />
+              <NavLink link="archery" hr={true} />
               <NavLink link="games" />
             </div>
           </div>
 
-          <NavLink link="hire" />
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-success" href="#contact"><strong>contact</strong></a>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
@@ -186,7 +188,7 @@ function App() {
       />
 
       <Hero
-        id="hire"
+        id="contact"
         sectionColor= "is-info"
         columnType="is-5 box has-background-success has-shadow-b-l"
         title="Let's Get Something Cooking"
